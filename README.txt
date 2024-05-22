@@ -1,39 +1,30 @@
-# MNIST Project
+##MNIST Project
+This project contains everything needed to train a Fully Connected Neural Network (FCNN) on the MNIST dataset (also adaptable to other datasets), insert backdoors into models, test accuracy, and poison the dataset.
 
-Questa progetto contiene tutto il necessario per addestrare una rete neurale fully connected (FCNN) sul dataset MNIST (adattabile anche ad altri dataset),
-inserire backdoor nei modelli, testare l'accuracy e avvelenare il dataset.
+###Folder Contents
 
-## Contenuto della cartella
+#mnist.py
+This script is used to train a Fully Connected Neural Network (FCNN) using the MNIST dataset. It is designed to be easily adaptable to other datasets and to create networks of any size with any desired hyperparameters.
 
-### mnist.py
+#mnist_backdoor_trainer.py
+This script is used to insert a backdoor into a model. It can be used with both pre-trained models and models trained from scratch. It is fully adaptable for different types of models and datasets.
 
-	Questo script è utilizzato per addestrare una Fully Connected Neural Network (FCNN) utilizzando il dataset MNIST. 
-	È progettato per essere facilmente adattabile ad altri dataset e per creare reti di qualsiasi dimensione con qualsiasi iperparametro desiderato.
+#mnist_testing.py
+This script is used to test the accuracy of a model. It is fully adaptable to any type of model and dataset.
 
-### mnist_backdoor_trainer.py
+#dataPoisoner.py
+This script is used to add a backdoor to a dataset. It is fully adaptable and allows for the selection of the type of attack (single target or all-to-all), the type of pattern, and the type of dataset.
 
-	Questo script è utilizzato per inserire una backdoor in un modello. Può essere utilizzato sia con modelli pre-addestrati 
-	che con modelli addestrati da zero. È completamente adattabile per diversi tipi di modelli e dataset.
+###Trained Models & Backdoored Dataset
+  Contains 3 trained models:
 
-### mnist_testing.py
+  #MNIST_Model_CLEAN.pth, model trained on MNIST with 97.51% accuracy
+  #MNIST_Model_BACKDOORED_AtA.pth, pre-trained model on MNIST re-trained with the backdoor dataset poisonedMNIST_AtA_25.0%.pth with an All to All attack with 25% of the dataset backdoored
+  #MNIST_Model_BACKDOORED_ST7t1.pth, pre-trained model on MNIST re-trained with the backdoor dataset poisonedMNIST_ST_7to1_1500of6000.pth with a Single Target attack
+  
+ 2 (x2) Backdoored Datasets:
 
-	Questo script è utilizzato per testare l'accuratezza di un modello. È completamente adattabile a qualsiasi tipo di modello e dataset.
-
-### dataPoisoner.py
-
-	Questo script è utilizzato aggiungere una backdoor ad un dataset. 
-	È completamente adattabile e permette di scegliere il tipo di attacco (single target o all-to-all), 
-	il tipo di pattern e il tipo di dataset.
-
-### Trained Models & Backdoored Dataset
-
-	Contiene 3 modelli addestrati:
-		- MNIST_Model_CLEAN.pth , modello addestrato con MNIST con accuracy 97.51%
-		- MNIST_Model_BACKDOORED_AtA.pth , modello preaddestrato con MNIST ri-addestrato con il dataset con backdoor poisonedMNIST_AtA_25.0%.pth con attacco All to All con il 25% del dataset con backdoor
-		- MNIST_Model_BACKDOORED_ST7t1.pth , modello preaddestrato con MNIST ri-addestrato con il dataset con backdoor poisonedMNIST_ST_7to1_1500of6000.pth con attacco Single Target.
-
-	2 (x2) Dataset con Backdoor:
-		- poisonedMNIST_AtA_25.0%.pth con attacco All to All con il 25% del dataset con backdoor
-		- ONLYpoisonedMNIST_AtA_25.0%.pth contiene SOLO immagini con backdoor
-		- poisonedMNIST_ST_7to1_1500of6000.pth con attacco Single Target da 7 a 1 con 1500 caratteri 7 con backdoor
-		- ONLYpoisonedMNIST_ST_7to1_1500of6000.pth contiene SOLO immagini con backdoor
+ #poisonedMNIST_AtA_25.0%.pth with an All to All attack with 25% of the dataset backdoored
+ #ONLYpoisonedMNIST_AtA_25.0%.pth contains ONLY images with backdoors
+ #poisonedMNIST_ST_7to1_1500of6000.pth with a Single Target attack from 7 to 1 with 1500 characters of 7 backdoored
+ #ONLYpoisonedMNIST_ST_7to1_1500of6000.pth contains ONLY images with backdoors
